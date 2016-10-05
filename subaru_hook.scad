@@ -2,7 +2,7 @@
     A replacement/improved hook for the trunk in a 2013 Subaru Impreza Hatchback
 */
 
-$fs=1.1;
+$fs=.5;
 $fa=0.5;
 
 plugHeight=12.5;
