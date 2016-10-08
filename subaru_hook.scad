@@ -49,20 +49,20 @@ module base() {
 
 //Hook section
 
-module hookArm(width) {
+module hookArm(width,length) {
             translate([-(plugTipDiameter/2),0,0]) {
-                translate([(plugTipDiameter/2),hookLength,0]) cylinder(d=plugTipDiameter,hookThickness);
-                cube([width,hookLength,hookThickness]);
+                translate([(plugTipDiameter/2),length,0]) cylinder(d=plugTipDiameter,hookThickness);
+                cube([width,length,hookThickness]);
             }
 }
 
 module hook() {
     difference() {
         union(){
-            rotate([hookAngle,0,0]) hookArm(width=plugTipDiameter);
+            rotate([hookAngle,0,0]) hookArm(width=plugTipDiameter, length=hookLength);
             difference() {
                 scale([1.0,baseMajorMinorRatio,1.0]) cylinder(d2=baseMinorDiameter, d1=plugTipDiameter,h=hookBaseDepth);
-                rotate([hookAngle,0,0]) translate([-hookFudge/2,-hookLength/2,-hookThickness]) hookArm(width=plugTipDiameter+hookFudge);
+                rotate([hookAngle,0,0]) translate([-hookFudge/2,-baseMajorDiameter/2,-hookThickness]) hookArm(width=plugTipDiameter+hookFudge,length=baseMajorDiameter);
             }
         }
         translate([0,0,-hookFudge/2]) cylinder(d=plugInternalDiameter, h=hookDepth);
